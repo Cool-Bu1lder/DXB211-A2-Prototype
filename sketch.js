@@ -3,77 +3,45 @@
 // https://p5js.org/examples/math-and-physics-forces/
 // https://p5js.org/reference/p5/p5.Vector/
 
-let handPose;
-let video;
-let hands = [];
-let movers = [];
+let world;
 
-function preload() {
-  handPose = ml5.handPose();
-}
+function preload() {}
 
 function setup() {
   createCanvas(1280, 720, WEBGL);
 
-  // Create the video and hide it
-  video = createCapture(VIDEO);
-  //640, 480
-  video.size(1280, 960);
-  video.hide();
+  world = new PhysicsEnvironment();
 
-  // Start detecting hands from the webcam video
-  handPose.detectStart(video, gotHands);
+  let cube = new Cube();
+  cube.position = createVector(0, 0, -10);
+  cube.acceleration = createVector(-10, -5, 0);
+  cube.angularVelocity = createVector(0.025, 0.025, 0.025);
+  world.addChild(cube);
 
-  initializeMovers();
+  let cubeBottomLeft = new Cube();
+  cubeBottomLeft.position = createVector(width / 2, height / 2, -10);
+  cubeBottomLeft.acceleration = createVector(-10, -11, 0);
+  cubeBottomLeft.angularVelocity = createVector(0.025, 0.025, 0.025);
+  world.addChild(cubeBottomLeft);
+
+  let cubeBottomRight = new Cube();
+  cubeBottomRight.position = createVector(-width / 2, height / 2, -10);
+  cubeBottomRight.acceleration = createVector(10, -11, 0);
+  cubeBottomRight.angularVelocity = createVector(0.025, 0.025, 0.025);
+  world.addChild(cubeBottomRight);
+
+  let cubeBottomMiddle = new Cube();
+  cubeBottomMiddle.position = createVector(0, height / 2, -10);
+  cubeBottomMiddle.acceleration = createVector(0, -11, 0);
+  cubeBottomMiddle.angularVelocity = createVector(0.025, 0.025, 0.025);
+  world.addChild(cubeBottomMiddle);
 }
 
 function draw() {
   background(0);
-  //image(video, -width / 2, -height / 2, width, 960);
 
-  // Draw all the tracked hand points
-  for (let i = 0; i < hands.length; i++) {
-    let hand = hands[i];
-    for (let j = 0; j < hand.keypoints.length; j++) {
-      let keypoint = hand.keypoints[j];
-      fill(0, 255, 0);
-      noStroke();
-      circle(keypoint.x - width / 2, keypoint.y - height / 2, 10);
-    }
-  }
+  let dt = deltaTime / 1000;
 
-  for (let mover of movers) {
-    // Gravitational force is proportional to the mass
-    let gravity = createVector(0, 0.1 * mover.mass);
-
-    // Apply gravitational force
-    mover.applyForce(gravity);
-
-    // Update and display
-    mover.update();
-    mover.display();
-    mover.checkEdges();
-    //console.log("CheckEdge");
-    //console.log(mover.position.y);
-    // console.log(-height / 2);
-  }
-  //console.log(movers[0].position.y);
-}
-
-// Callback function for when handPose outputs data
-function gotHands(results) {
-  // Save the output to the hands variable
-  hands = results;
-}
-
-function initializeMovers() {
-  // Calculate the spacing based on the width of the canvas
-  let xSpacing = width / 9;
-
-  // Fill the movers array with 9 Mover objects with random masses
-  for (let i = 0; i < 9; i += 1) {
-    let mass = random(0.5, 3);
-    let xPosition = xSpacing * i + xSpacing / 2;
-    movers[i] = new Mover(mass, xPosition - width / 2, 0, color(i, 100, 100));
-  }
+  world.update(dt);
+  world.display();
 }
