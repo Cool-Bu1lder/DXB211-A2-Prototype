@@ -3,7 +3,6 @@
 // https://p5js.org/examples/math-and-physics-forces/
 // https://p5js.org/reference/p5/p5.Vector/
 
-let world;
 let gameStateMachine;
 let font;
 
@@ -13,12 +12,10 @@ function preload() {
 
 function setup() {
   createCanvas(1280, 720, WEBGL);
-
-  world = new PhysicsEnvironment();
-  gameStateMachine = new GameStateMachine();
-
   textAlign(CENTER, CENTER);
   textFont(font);
+
+  gameStateMachine = new GameStateMachine();
 }
 
 function draw() {
@@ -27,7 +24,4 @@ function draw() {
   let dt = deltaTime / 1000;
 
   gameStateMachine.update(dt);
-
-  world.update(dt);
-  world.display();
 }
