@@ -19,7 +19,7 @@ class SplitCube extends RigidBody {
     rotateX(this.rotation.x);
     rotateY(this.rotation.y);
     rotateZ(this.rotation.z);
-    box(this.mass * 16, this.mass * 8);
+    box(this.mass * 16, this.mass * 8, this.mass * 16);
 
     pop();
   }

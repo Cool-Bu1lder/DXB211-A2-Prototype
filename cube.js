@@ -23,20 +23,31 @@ class Cube extends RigidBody {
       this.wasActived = true;
       this.activated = true;
       this.color = [255, 0, 0];
-      this.effect();
+
+      let dx = mouseX - width / 2 - this.position.x;
+      let dy = mouseY - height / 2 - this.position.y;
+      let angle = atan2(dy, dx);
+
+      this.effect(angle);
     }
   }
 
-  effect() {
+  effect(angle) {
+    let offsetX = sin(-angle) * 14;
+    let offsetY = cos(-angle) * 14;
+    let velocityX = sin(-angle) * 0.5;
+    let velocityY = cos(-angle) * 0.5;
+
     let a = new SplitCube();
+    a.rotation = createVector(0, 0, angle);
     a.position = createVector(
-      this.position.x,
-      this.position.y + 14,
+      this.position.x + offsetX,
+      this.position.y + offsetY,
       this.position.z
     );
     a.velocity = createVector(
-      this.velocity.x * 0.5,
-      this.velocity.y * 0.5 + 0.5,
+      this.velocity.x * 0.5 + velocityX,
+      this.velocity.y * 0.5 + velocityY,
       this.velocity.z * 0.5
     );
     a.angularVelocity = createVector(
@@ -47,14 +58,15 @@ class Cube extends RigidBody {
     this.parent.addChild(a);
 
     let b = new SplitCube();
+    b.rotation = createVector(0, 0, angle);
     b.position = createVector(
-      this.position.x,
-      this.position.y - 14,
+      this.position.x - offsetX,
+      this.position.y - offsetY,
       this.position.z
     );
     b.velocity = createVector(
-      this.velocity.x * 0.5,
-      this.velocity.y * 0.5 - 0.5,
+      this.velocity.x * 0.5 - velocityX,
+      this.velocity.y * 0.5 - velocityY,
       this.velocity.z * 0.5
     );
     b.angularVelocity = createVector(
