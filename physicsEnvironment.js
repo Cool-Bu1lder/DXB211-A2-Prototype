@@ -13,7 +13,15 @@ class PhysicsEnvironment {
   }
 
   removeChild(c) {
-    const index = this.children.indexOf(c);
+    let index = -1;
+
+    for (let i = 0; i < this.children.length; i++) {
+      if (this.children[i].id == c.id) {
+        index = i;
+        break;
+      }
+    }
+
     if (index !== -1) {
       this.children.splice(index, 1);
       c.parent = null;

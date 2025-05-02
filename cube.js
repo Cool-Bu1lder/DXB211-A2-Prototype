@@ -31,13 +31,13 @@ class Cube extends RigidBody {
     let a = new SplitCube();
     a.position = createVector(
       this.position.x,
-      this.position.y + 16,
+      this.position.y + 14,
       this.position.z
     );
     a.velocity = createVector(
-      this.velocity.x,
-      this.velocity.y,
-      this.velocity.z
+      this.velocity.x * 0.5,
+      this.velocity.y * 0.5 + 0.5,
+      this.velocity.z * 0.5
     );
     a.angularVelocity = createVector(
       this.angularVelocity.x * 0.1,
@@ -49,13 +49,13 @@ class Cube extends RigidBody {
     let b = new SplitCube();
     b.position = createVector(
       this.position.x,
-      this.position.y - 16,
+      this.position.y - 14,
       this.position.z
     );
     b.velocity = createVector(
-      this.velocity.x,
-      this.velocity.y,
-      this.velocity.z
+      this.velocity.x * 0.5,
+      this.velocity.y * 0.5 - 0.5,
+      this.velocity.z * 0.5
     );
     b.angularVelocity = createVector(
       this.angularVelocity.x * 0.1,
