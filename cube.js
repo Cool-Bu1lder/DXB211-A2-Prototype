@@ -23,7 +23,48 @@ class Cube extends RigidBody {
       this.wasActived = true;
       this.activated = true;
       this.color = [255, 0, 0];
+      this.effect();
     }
+  }
+
+  effect() {
+    let a = new SplitCube();
+    a.position = createVector(
+      this.position.x,
+      this.position.y + 16,
+      this.position.z
+    );
+    a.velocity = createVector(
+      this.velocity.x,
+      this.velocity.y,
+      this.velocity.z
+    );
+    a.angularVelocity = createVector(
+      this.angularVelocity.x * 0.1,
+      this.angularVelocity.y * 0.1,
+      this.angularVelocity.z * 0.1
+    );
+    this.parent.addChild(a);
+
+    let b = new SplitCube();
+    b.position = createVector(
+      this.position.x,
+      this.position.y - 16,
+      this.position.z
+    );
+    b.velocity = createVector(
+      this.velocity.x,
+      this.velocity.y,
+      this.velocity.z
+    );
+    b.angularVelocity = createVector(
+      this.angularVelocity.x * 0.1,
+      this.angularVelocity.y * 0.1,
+      this.angularVelocity.z * 0.1
+    );
+    this.parent.addChild(b);
+
+    this.parent.removeChild(this);
   }
 
   display() {

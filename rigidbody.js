@@ -6,6 +6,7 @@ class RigidBody {
     this.acceleration = createVector(0, 0, 0);
     this.rotation = createVector(0, 0, 0);
     this.angularVelocity = createVector(0, 0, 0);
+    this.parent = null;
   }
 
   applyForce(force) {

@@ -9,6 +9,15 @@ class PhysicsEnvironment {
 
   addChild(c) {
     this.children.push(c);
+    c.parent = this;
+  }
+
+  removeChild(c) {
+    const index = this.children.indexOf(c);
+    if (index !== -1) {
+      this.children.splice(index, 1);
+      c.parent = null;
+    }
   }
 
   update(dt) {
