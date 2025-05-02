@@ -8,30 +8,6 @@ class PlayController {
 
     this.gameEnded = false;
     this.endTimer = 2;
-
-    /*let cube = new Cube();
-    cube.position = createVector(0, 0, -10);
-    cube.acceleration = createVector(-10, -5, 0);
-    cube.angularVelocity = createVector(0.025, 0.025, 0.025);
-    this.world.addChild(cube);
-
-    let cubeBottomLeft = new Cube();
-    cubeBottomLeft.position = createVector(width / 2, height / 2, -10);
-    cubeBottomLeft.acceleration = createVector(-10, -11, 0);
-    cubeBottomLeft.angularVelocity = createVector(0.025, 0.025, 0.025);
-    this.world.addChild(cubeBottomLeft);
-
-    let cubeBottomRight = new Cube();
-    cubeBottomRight.position = createVector(-width / 2, height / 2, -10);
-    cubeBottomRight.acceleration = createVector(10, -11, 0);
-    cubeBottomRight.angularVelocity = createVector(0.025, 0.025, 0.025);
-    this.world.addChild(cubeBottomRight);
-
-    let cubeBottomMiddle = new Cube();
-    cubeBottomMiddle.position = createVector(0, height / 2, -10);
-    cubeBottomMiddle.acceleration = createVector(0, -11, 0);
-    cubeBottomMiddle.angularVelocity = createVector(0.025, 0.025, 0.025);
-    this.world.addChild(cubeBottomMiddle);*/
   }
 
   update(dt) {
@@ -40,6 +16,7 @@ class PlayController {
 
       textSize(24);
       text(ceil(this.roundTimer), -width / 2 + 30, -height / 2 + 30);
+      text(this.world.cubesActivated, width / 2 - 30, -height / 2 + 30);
 
       if (random() > 0.95) {
         let rd = (random() - 0.5) * 4;

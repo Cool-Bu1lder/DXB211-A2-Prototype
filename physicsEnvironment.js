@@ -3,6 +3,8 @@ class PhysicsEnvironment {
   constructor(parameters) {
     this.children = [];
     this.gravity = createVector(0, 9.8, 0);
+
+    this.cubesActivated = 0;
   }
 
   addChild(c) {
@@ -16,6 +18,10 @@ class PhysicsEnvironment {
       child.acceleration.add(g);
 
       child.update();
+
+      if (child.activated) {
+        this.cubesActivated += 1;
+      }
     }
   }
 

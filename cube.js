@@ -3,13 +3,16 @@ class Cube extends RigidBody {
     super();
     this.color = 255;
     this.activated = false;
+    this.wasActived = false;
   }
 
   update() {
     // update physics
     super.update();
+    this.activated = false;
 
     if (
+      !this.wasActived &&
       dist(
         this.position.x,
         this.position.y,
@@ -17,6 +20,7 @@ class Cube extends RigidBody {
         mouseY - height / 2
       ) < 32
     ) {
+      this.wasActived = true;
       this.activated = true;
       this.color = [255, 0, 0];
     }
