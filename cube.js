@@ -1,8 +1,25 @@
 class Cube extends RigidBody {
   constructor() {
     super();
-
     this.color = 255;
+    this.activated = false;
+  }
+
+  update() {
+    // update physics
+    super.update();
+
+    if (
+      dist(
+        this.position.x,
+        this.position.y,
+        mouseX - width / 2,
+        mouseY - height / 2
+      ) < 32
+    ) {
+      this.activated = true;
+      this.color = [255, 0, 0];
+    }
   }
 
   display() {
@@ -18,16 +35,5 @@ class Cube extends RigidBody {
     box(this.mass * 16);
 
     pop();
-
-    //console.log(dist(this.position.x, this.position.y, mouseX, mouseY));
-    if (
-      dist(
-        this.position.x,
-        this.position.y,
-        mouseX - width / 2,
-        mouseY - height / 2
-      ) < 30
-    )
-      this.color = 0;
   }
 }
