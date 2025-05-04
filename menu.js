@@ -21,6 +21,7 @@ class MenuController {
     }
 
     if (!this.isStarting) {
+      fill(255);
       textSize(24);
       text("PLAY", 0, -65);
       return;

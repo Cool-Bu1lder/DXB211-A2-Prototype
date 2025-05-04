@@ -12,12 +12,24 @@ class Cube extends RigidBody {
     this.activated = false;
 
     if (
-      !this.wasActived &&
+      (!this.wasActived &&
+        dist(
+          this.position.x,
+          this.position.y,
+          mouseX - width / 2,
+          mouseY - height / 2
+        ) < 32) ||
       dist(
         this.position.x,
         this.position.y,
-        mouseX - width / 2,
-        mouseY - height / 2
+        handController.leftPalm.x,
+        handController.leftPalm.y
+      ) < 32 ||
+      dist(
+        this.position.x,
+        this.position.y,
+        handController.rightPalm.x,
+        handController.rightPalm.y
       ) < 32
     ) {
       this.wasActived = true;

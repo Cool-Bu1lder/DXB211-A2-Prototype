@@ -14,6 +14,7 @@ class PlayController {
     if (!this.gameEnded) {
       this.roundTimer -= dt;
 
+      fill(255);
       textSize(24);
       text(ceil(this.roundTimer), -width / 2 + 30, -height / 2 + 30);
       text(this.world.cubesActivated, width / 2 - 30, -height / 2 + 30);
