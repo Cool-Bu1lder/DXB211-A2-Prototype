@@ -1,9 +1,10 @@
 let range = 32;
+let colours = ["red", "green", "blue", "orange", "yellow", "purple"];
 
 class Cube extends RigidBody {
-  constructor() {
+  constructor(colour) {
     super();
-    this.color = 255;
+    this.colour = colour || random(colours);
     this.activated = false;
     this.wasActived = false;
     this.size = 48;
@@ -39,7 +40,6 @@ class Cube extends RigidBody {
     ) {
       this.wasActived = true;
       this.activated = true;
-      this.color = [255, 0, 0];
 
       let dx = mouseX - width / 2 - this.position.x;
       let dy = mouseY - height / 2 - this.position.y;
@@ -55,7 +55,7 @@ class Cube extends RigidBody {
     let velocityX = sin(-angle) * 0.5;
     let velocityY = cos(-angle) * 0.5;
 
-    let a = new SplitCube();
+    let a = new SplitCube(this.colour);
     a.rotation = createVector(0, 0, angle);
     a.position = createVector(
       this.position.x + offsetX,
@@ -74,7 +74,7 @@ class Cube extends RigidBody {
     );
     this.parent.addChild(a);
 
-    let b = new SplitCube();
+    let b = new SplitCube(this.colour);
     b.rotation = createVector(0, 0, angle);
     b.position = createVector(
       this.position.x - offsetX,
@@ -101,7 +101,7 @@ class Cube extends RigidBody {
 
     stroke(0);
     strokeWeight(2);
-    fill(this.color);
+    fill(this.colour);
     translate(this.position.x, this.position.y, this.position.z);
     rotateX(this.rotation.x);
     rotateY(this.rotation.y);

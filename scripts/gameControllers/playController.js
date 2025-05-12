@@ -28,8 +28,14 @@ class PlayController {
 
       fill(255);
       textSize(24);
-      text(ceil(this.roundTimer), -width / 2 + 30, -height / 2 + 30);
-      text(this.world.cubesActivated, width / 2 - 30, -height / 2 + 30);
+      textAlign(LEFT);
+      text("Time: " + ceil(this.roundTimer), -width / 2 + 30, -height / 2 + 30);
+      textAlign(RIGHT);
+      text(
+        "Score: " + this.world.cubesActivated,
+        width / 2 - 30,
+        -height / 2 + 30
+      );
 
       if (random() > 0.95) {
         let rd = (random() - 0.5) * 4;

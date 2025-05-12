@@ -1,7 +1,7 @@
 class SplitCube extends RigidBody {
-  constructor() {
+  constructor(colour) {
     super();
-    this.color = 255;
+    this.color = colour || 255;
     this.size = 48;
   }
 
