@@ -1,6 +1,15 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
+  /* centre vertically and horizontally https://www.w3schools.com/howto/howto_css_center-vertical.asp */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  background-color: rgb(36, 36, 36);
 }
 
 canvas {

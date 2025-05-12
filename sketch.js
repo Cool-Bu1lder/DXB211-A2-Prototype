@@ -7,9 +7,11 @@ let handController = new HandController();
 
 let gameStateMachine;
 let font;
+let backgroundImg;
 
 function preload() {
   font = loadFont("data/CascadiaCode.ttf");
+  backgroundImg = loadImage("/data/Gradient.png");
 
   handController.preload();
 }

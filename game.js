@@ -11,6 +11,18 @@ class PlayController {
   }
 
   update(dt) {
+    let scale = 1.15;
+    push();
+    translate(0, 0, -100);
+    image(
+      backgroundImg,
+      (-width * scale) / 2,
+      (-height * scale) / 2,
+      width * scale,
+      height * scale
+    );
+    pop();
+
     if (!this.gameEnded) {
       this.roundTimer -= dt;
 

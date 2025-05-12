@@ -13,6 +13,18 @@ class MenuController {
   }
 
   update(dt) {
+    let scale = 1.15;
+    push();
+    translate(0, 0, -100);
+    image(
+      backgroundImg,
+      (-width * scale) / 2,
+      (-height * scale) / 2,
+      width * scale,
+      height * scale
+    );
+    pop();
+
     this.world.update(dt);
     this.world.display();
 
@@ -21,8 +33,8 @@ class MenuController {
     }
 
     if (!this.isStarting) {
+      textSize(30);
       fill(255);
-      textSize(24);
       text("PLAY", 0, -65);
       return;
     }
