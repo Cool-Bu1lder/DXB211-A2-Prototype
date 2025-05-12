@@ -2,6 +2,7 @@ class SplitCube extends RigidBody {
   constructor() {
     super();
     this.color = 255;
+    this.size = 48;
   }
 
   update() {
@@ -10,7 +11,7 @@ class SplitCube extends RigidBody {
   }
 
   display() {
-    push(); // save previous state
+    push();
 
     stroke(0);
     strokeWeight(2);
@@ -19,7 +20,7 @@ class SplitCube extends RigidBody {
     rotateX(this.rotation.x);
     rotateY(this.rotation.y);
     rotateZ(this.rotation.z);
-    box(this.mass * 16, this.mass * 8, this.mass * 16);
+    box(this.size, this.size / 2, this.size);
 
     pop();
   }

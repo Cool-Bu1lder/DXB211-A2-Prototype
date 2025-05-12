@@ -1,9 +1,12 @@
+let range = 32;
+
 class Cube extends RigidBody {
   constructor() {
     super();
     this.color = 255;
     this.activated = false;
     this.wasActived = false;
+    this.size = 48;
   }
 
   update() {
@@ -11,26 +14,28 @@ class Cube extends RigidBody {
     super.update();
     this.activated = false;
 
+    let mouseDist = dist(
+      this.position.x,
+      this.position.y,
+      mouseX - width / 2,
+      mouseY - height / 2
+    );
+    let lHandDist = dist(
+      this.position.x,
+      this.position.y,
+      handController.leftPalm.x,
+      handController.leftPalm.y
+    );
+    let rHandDist = dist(
+      this.position.x,
+      this.position.y,
+      handController.rightPalm.x,
+      handController.rightPalm.y
+    );
+
     if (
-      (!this.wasActived &&
-        dist(
-          this.position.x,
-          this.position.y,
-          mouseX - width / 2,
-          mouseY - height / 2
-        ) < 32) ||
-      dist(
-        this.position.x,
-        this.position.y,
-        handController.leftPalm.x,
-        handController.leftPalm.y
-      ) < 32 ||
-      dist(
-        this.position.x,
-        this.position.y,
-        handController.rightPalm.x,
-        handController.rightPalm.y
-      ) < 32
+      !this.wasActived &&
+      (mouseDist < range || lHandDist < range || rHandDist < range)
     ) {
       this.wasActived = true;
       this.activated = true;
@@ -101,7 +106,7 @@ class Cube extends RigidBody {
     rotateX(this.rotation.x);
     rotateY(this.rotation.y);
     rotateZ(this.rotation.z);
-    box(this.mass * 16);
+    box(this.size);
 
     pop();
   }

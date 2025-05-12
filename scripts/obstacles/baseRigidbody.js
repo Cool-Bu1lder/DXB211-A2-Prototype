@@ -3,7 +3,7 @@ let id = 0;
 class RigidBody {
   constructor() {
     this.id = id++;
-    this.mass = 3;
+    this.mass = 1;
     this.position = createVector(0, 0, 0);
     this.velocity = createVector(0, 0, 0);
     this.acceleration = createVector(0, 0, 0);
