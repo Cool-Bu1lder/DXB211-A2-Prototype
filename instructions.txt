@@ -1,0 +1,2 @@
+Sketch is a game. Objective of the game is to slice as many cubes as you can using your hands within a one minute time frame.
+When the sketch is launched you will be placed in a menu. Slice the cube in the middle of the screen to begin the game.
