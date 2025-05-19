@@ -1,7 +1,7 @@
 class PlayController {
   constructor(parameters) {
     this.world = new PhysicsEnvironment();
-    this.world.gravity = createVector(0, 9.8, 0);
+    this.world.gravity = createVector(0, 9.8 / 2, 0);
 
     this.roundTimer = 30;
     this.score = 0;
@@ -46,7 +46,7 @@ class PlayController {
 
         let cube = new Cube();
         cube.position = createVector(origin, height / 2, -10);
-        cube.acceleration = createVector(direction, -11 + rf, 0); //createVector(-10, -11, 0);
+        cube.acceleration = createVector(direction, (-11 + rf) / 1, 0); //createVector(-10, -11, 0);
         cube.angularVelocity = createVector(0.025, 0.025, 0.025);
         this.world.addChild(cube);
       }
