@@ -1,4 +1,4 @@
-let range = 32;
+let range = 40;
 let colours = ["red", "green", "blue", "orange", "yellow", "purple"];
 
 class Cube extends RigidBody {
