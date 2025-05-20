@@ -1,7 +1,7 @@
 # TODO
 
 - Change hands Icons
-- Display score on screen after game
+- ~~Display score on screen after game~~
 - Display highest score in main menu?
 - New Method for hit Detection, draw line between previous hand position
 - Effects for hands
