@@ -29,10 +29,10 @@ class PlayController {
       fill(255);
       textSize(24);
       textAlign(LEFT);
-      text("Time: " + ceil(this.roundTimer), -width / 2 + 30, -height / 2 + 30);
+      text("TIME: " + ceil(this.roundTimer), -width / 2 + 30, -height / 2 + 30);
       textAlign(RIGHT);
       text(
-        "Score: " + this.world.cubesActivated,
+        "SCORE: " + this.world.cubesActivated,
         width / 2 - 30,
         -height / 2 + 30
       );
