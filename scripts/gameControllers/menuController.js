@@ -16,13 +16,14 @@ class MenuController {
     let scale = 1.15;
     push();
     translate(0, 0, -100);
-    image(
+    /*image(
       backgroundImg,
       (-width * scale) / 2,
       (-height * scale) / 2,
       width * scale,
       height * scale
-    );
+    );*/
+    background("black");
     pop();
 
     this.world.update(dt);
