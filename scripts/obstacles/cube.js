@@ -1,13 +1,12 @@
 let range = 40;
-let colours = ["red", "green", "blue", "orange", "yellow", "purple"];
 
 class Cube extends RigidBody {
-  constructor(colour) {
+  constructor(colour, size) {
     super();
-    this.colour = colour || random(colours);
+    this.colour = colour || "white";
     this.activated = false;
     this.wasActived = false;
-    this.size = 48;
+    this.size = size || 50;
   }
 
   update() {
@@ -50,12 +49,12 @@ class Cube extends RigidBody {
   }
 
   effect(angle) {
-    let offsetX = sin(-angle) * 14;
-    let offsetY = cos(-angle) * 14;
+    let offsetX = sin(-angle) * (this.size / 4 + 2);
+    let offsetY = cos(-angle) * (this.size / 4 + 2);
     let velocityX = sin(-angle) * 0.5;
     let velocityY = cos(-angle) * 0.5;
 
-    let a = new SplitCube(this.colour);
+    let a = new SplitCube(this.colour, this.size);
     a.rotation = createVector(0, 0, angle);
     a.position = createVector(
       this.position.x + offsetX,
@@ -74,7 +73,7 @@ class Cube extends RigidBody {
     );
     this.parent.addChild(a);
 
-    let b = new SplitCube(this.colour);
+    let b = new SplitCube(this.colour, this.size);
     b.rotation = createVector(0, 0, angle);
     b.position = createVector(
       this.position.x - offsetX,

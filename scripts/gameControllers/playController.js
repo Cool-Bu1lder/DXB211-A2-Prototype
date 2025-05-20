@@ -38,15 +38,18 @@ class PlayController {
       );
 
       if (random() > 0.95) {
-        let rd = (random() - 0.5) * 4;
-        let rf = (random() - 0.5) * 4;
+        let randomDirection = (random() - 0.5) * 4;
+        //let randomForce = (random() - 0.5) * 4;
         let r = (random() - 0.5) * 2;
         let origin = r * (width / 2);
-        let direction = -r * 10 + rd;
+        let direction = -r * 10 + randomDirection;
 
-        let cube = new Cube();
+        // generate cubes
+        let data = random(cubeData);
+        let cube = new Cube(data.colour, data.size, data.speed);
         cube.position = createVector(origin, height / 2, -10);
-        cube.acceleration = createVector(direction, (-11 + rf) / 1, 0); //createVector(-10, -11, 0);
+        //cube.acceleration = createVector(direction, (-11 + randomForce) / 1, 0); //createVector(-10, -11, 0);
+        cube.acceleration = createVector(direction, data.speed / 1, 0);
         cube.angularVelocity = createVector(0.025, 0.025, 0.025);
         this.world.addChild(cube);
       }
