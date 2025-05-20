@@ -1,3 +1,14 @@
+let instructions = [
+  "Slice the Cube",
+  "This Cube\nowes you money",
+  "That cube insulted\nyour haircut",
+  "Cube says you\ncan't do it",
+  "Do it",
+  "The one the cubes\nfear is you",
+  "No cubes allowed",
+];
+let texts = [];
+
 class MenuController {
   constructor(parameters) {
     this.world = new PhysicsEnvironment();
@@ -28,6 +39,27 @@ class MenuController {
 
     this.world.update(dt);
     this.world.display();
+
+    if (random() > 0.99) {
+      // I would prefer to push a textEffect class, but this works right now.
+      texts.push([
+        random(instructions),
+        2 * (random() - 0.5),
+        2 * (random() - 0.5),
+        0,
+      ]);
+    }
+
+    for (let t of texts) {
+      textSize(t[3] + 30);
+      textAlign(CENTER);
+      let alpha = sin((t[3] / 10) * PI) * 255;
+      fill(255, alpha);
+      text(t[0], (width / 2 - 80) * t[1], (height / 2 - 40) * t[2]);
+
+      t[3] += dt * 3;
+    }
+    texts = texts.filter((t) => t[3] < 10);
 
     if (this.playCube.activated) {
       this.isStarting = true;
