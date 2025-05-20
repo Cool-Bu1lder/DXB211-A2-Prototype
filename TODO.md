@@ -12,3 +12,4 @@
 - Initial screen to get player into proper pisition.
 - tutorial on how to play, people don't like to read. Show each cube before play.
 - why are we hitting cubes
+- MUSIC AND SOUND EFFECTS
