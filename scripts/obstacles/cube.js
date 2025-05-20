@@ -1,5 +1,3 @@
-let range = 40;
-
 class Cube extends RigidBody {
   constructor(colour, size) {
     super();
@@ -7,6 +5,7 @@ class Cube extends RigidBody {
     this.activated = false;
     this.wasActived = false;
     this.size = size || 50;
+    this.range = this.size;
   }
 
   update() {
@@ -35,7 +34,9 @@ class Cube extends RigidBody {
 
     if (
       !this.wasActived &&
-      (mouseDist < range || lHandDist < range || rHandDist < range)
+      (mouseDist < this.range ||
+        lHandDist < this.range ||
+        rHandDist < this.range)
     ) {
       this.wasActived = true;
       this.activated = true;
