@@ -10,7 +10,10 @@ class PlayController {
     this.startTimer = 3;
 
     this.gameEnded = false;
-    this.endTimer = 2;
+    this.endTimer = 3;
+
+    this.resultsDisplayed = false;
+    this.resultsTimer = 3;
   }
 
   update(dt) {
@@ -78,7 +81,17 @@ class PlayController {
         }
       } else {
         this.endTimer -= dt;
-        if (this.endTimer <= 0) gameStateMachine.setState(gameStates.MENU);
+        if (this.endTimer <= 0) this.resultsDisplayed = true;
+      }
+
+      if (this.resultsDisplayed) {
+        background(0, 255 / 4);
+        fill(255);
+        textSize(24);
+        textAlign(CENTER);
+        text("SCORE: " + this.world.cubesActivated, 0, 0);
+        this.resultsTimer -= dt;
+        if (this.resultsTimer <= 0) gameStateMachine.setState(gameStates.MENU);
       }
     }
 
