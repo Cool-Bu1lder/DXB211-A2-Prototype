@@ -38,7 +38,7 @@ class HandController {
       let palmX = (wrist.x + middleFingerBase.x) / 2;
       let palmY = (wrist.y + middleFingerBase.y) / 2;
       this.leftPalm = createVector(-1 * (-1280 / 2 + palmX), -960 / 2 + palmY);
-      fill(255, 128, 0);
+      fill(0, 255, 255);
       noStroke();
       circle(this.leftPalm.x, this.leftPalm.y, 10);
     }
