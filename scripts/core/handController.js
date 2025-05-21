@@ -7,6 +7,8 @@ class HandController {
     this.hands = [];
     this.leftPalm = {};
     this.rightPalm = {};
+    this.pLeftPalms = [];
+    this.pRightPalms = [];
   }
 
   preload() {
@@ -37,10 +39,15 @@ class HandController {
       let middleFingerBase = hand.middle_finger_mcp;
       let palmX = (wrist.x + middleFingerBase.x) / 2;
       let palmY = (wrist.y + middleFingerBase.y) / 2;
+      this.pLeftPalms.push(this.leftPalm);
       this.leftPalm = createVector(-1 * (-1280 / 2 + palmX), -960 / 2 + palmY);
       fill(0, 255, 255);
       noStroke();
       circle(this.leftPalm.x, this.leftPalm.y, 10);
+      for (let pLeftPalm of this.pLeftPalms) {
+        circle(pLeftPalm.x, pLeftPalm.y, 20);
+      }
+      this.pLeftPalms = this.pLeftPalms.slice(-10);
     }
 
     if (this.hands[1]) {
@@ -49,10 +56,15 @@ class HandController {
       let middleFingerBase = hand.middle_finger_mcp;
       let palmX = (wrist.x + middleFingerBase.x) / 2;
       let palmY = (wrist.y + middleFingerBase.y) / 2;
+      this.pRightPalms.push(this.rightPalm);
       this.rightPalm = createVector(-1 * (-1280 / 2 + palmX), -960 / 2 + palmY);
       fill(0, 0, 255);
       noStroke();
       circle(this.rightPalm.x, this.rightPalm.y, 10);
+      for (let pRightPalm of this.pRightPalms) {
+        circle(pRightPalm.x, pRightPalm.y, 20);
+      }
+      this.pRightPalms = this.pRightPalms.slice(-10);
     }
   }
 
