@@ -1,11 +1,11 @@
 let instructions = [
-  "Slice the Cube",
   "This Cube\nowes you money",
   "That cube insulted\nyour haircut",
   "Cube says you\ncan't do it",
   "Do it",
   "The one the cubes\nfear is you",
   "No cubes allowed",
+  "Slice the Cube",
 ];
 let texts = [];
 
