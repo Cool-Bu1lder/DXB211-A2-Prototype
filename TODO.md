@@ -17,3 +17,5 @@
 - BLACK FADE IN AND OUT TRANSITION
 
 - Name: Cube Slicer
+- Order cube instructions on screen
+- Cube Size Change when speaking
