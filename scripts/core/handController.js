@@ -1,19 +1,25 @@
-function drawPalm(hand, previousPalms, palm) {
+// precondition: assumed hand exists
+function updatePalmPosition(hand) {
   let wrist = hand.wrist;
   let middleFingerBase = hand.middle_finger_mcp;
+
   let palmX = (wrist.x + middleFingerBase.x) / 2;
   let palmY = (wrist.y + middleFingerBase.y) / 2;
+
+  return createVector(-1 * (-1280 / 2 + palmX), -960 / 2 + palmY);
+}
+
+function ghostEffect(previousPalms, palm) {
   previousPalms.push(palm);
-  palm = createVector(-1 * (-1280 / 2 + palmX), -960 / 2 + palmY);
+
   fill(0, 255, 255);
   noStroke();
-  circle(palm.x, palm.y, 10);
   for (let pLeftPalm of previousPalms) {
     circle(pLeftPalm.x, pLeftPalm.y, 20);
   }
   previousPalms = previousPalms.slice(-10);
 
-  return { palm, previousPalms };
+  return previousPalms;
 }
 
 // adapted from https://docs.ml5js.org/#/reference/handpose
@@ -50,25 +56,37 @@ class HandController {
 
     //this.debug2D();
 
+    // left palm
+    if (this.leftPalm) {
+      this.pLeftPalms = ghostEffect(this.pLeftPalms, this.leftPalm);
+    }
+
     if (this.hands[0]) {
-      let { palm, previousPalms } = drawPalm(
-        this.hands[0],
-        this.pLeftPalms,
-        this.leftPalm
-      );
-      this.leftPalm = palm;
-      this.pLeftPalms = previousPalms;
+      this.leftPalm = updatePalmPosition(this.hands[0]);
+    }
+
+    // draw palm
+    if (this.leftPalm) {
+      fill(0, 255, 255);
+      noStroke();
+      circle(this.leftPalm.x, this.leftPalm.y, 10);
+    }
+
+    /*// right palm
+    if (this.rightPalm) {
+      this.pRightPalms = ghostEffect(this.pRightPalms, this.rightPalm);
     }
 
     if (this.hands[1]) {
-      let { palm, previousPalms } = drawPalm(
-        this.hands[1],
-        this.pRightPalms,
-        this.rightPalm
-      );
-      this.rightPalm = palm;
-      this.pRightPalms = previousPalms;
+      this.rightPalm = updatePalmPosition(this.hands[1]);
     }
+
+    // draw palm
+    if (this.rightPalm) {
+      fill(0, 255, 255);
+      noStroke();
+      circle(this.rightPalm.x, this.rightPalm.y, 10);
+    }*/
   }
 
   debug2D() {
