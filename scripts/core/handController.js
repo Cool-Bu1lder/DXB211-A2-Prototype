@@ -12,11 +12,16 @@ function updatePalmPosition(hand) {
 function ghostEffect(previousPalms, palm) {
   previousPalms.push(palm);
 
+  // https://p5js.org/reference/p5/beginShape/
   fill(0, 255, 255);
   noStroke();
+  strokeWeight(2);
+  beginShape(TESS);
   for (let pLeftPalm of previousPalms) {
-    circle(pLeftPalm.x, pLeftPalm.y, 20);
+    vertex(pLeftPalm.x, pLeftPalm.y);
   }
+  endShape();
+
   previousPalms = previousPalms.slice(-10);
 
   return previousPalms;
