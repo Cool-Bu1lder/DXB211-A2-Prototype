@@ -1,5 +1,22 @@
-// adapted from https://docs.ml5js.org/#/reference/handpose
+function drawPalm(hand, previousPalms, palm) {
+  let wrist = hand.wrist;
+  let middleFingerBase = hand.middle_finger_mcp;
+  let palmX = (wrist.x + middleFingerBase.x) / 2;
+  let palmY = (wrist.y + middleFingerBase.y) / 2;
+  previousPalms.push(palm);
+  palm = createVector(-1 * (-1280 / 2 + palmX), -960 / 2 + palmY);
+  fill(0, 255, 255);
+  noStroke();
+  circle(palm.x, palm.y, 10);
+  for (let pLeftPalm of previousPalms) {
+    circle(pLeftPalm.x, pLeftPalm.y, 20);
+  }
+  previousPalms = previousPalms.slice(-10);
 
+  return { palm, previousPalms };
+}
+
+// adapted from https://docs.ml5js.org/#/reference/handpose
 class HandController {
   constructor() {
     this.handPose;
@@ -34,37 +51,23 @@ class HandController {
     //this.debug2D();
 
     if (this.hands[0]) {
-      let hand = this.hands[0];
-      let wrist = hand.wrist;
-      let middleFingerBase = hand.middle_finger_mcp;
-      let palmX = (wrist.x + middleFingerBase.x) / 2;
-      let palmY = (wrist.y + middleFingerBase.y) / 2;
-      this.pLeftPalms.push(this.leftPalm);
-      this.leftPalm = createVector(-1 * (-1280 / 2 + palmX), -960 / 2 + palmY);
-      fill(0, 255, 255);
-      noStroke();
-      circle(this.leftPalm.x, this.leftPalm.y, 10);
-      for (let pLeftPalm of this.pLeftPalms) {
-        circle(pLeftPalm.x, pLeftPalm.y, 20);
-      }
-      this.pLeftPalms = this.pLeftPalms.slice(-10);
+      let { palm, previousPalms } = drawPalm(
+        this.hands[0],
+        this.pLeftPalms,
+        this.leftPalm
+      );
+      this.leftPalm = palm;
+      this.pLeftPalms = previousPalms;
     }
 
     if (this.hands[1]) {
-      let hand = this.hands[1];
-      let wrist = hand.wrist;
-      let middleFingerBase = hand.middle_finger_mcp;
-      let palmX = (wrist.x + middleFingerBase.x) / 2;
-      let palmY = (wrist.y + middleFingerBase.y) / 2;
-      this.pRightPalms.push(this.rightPalm);
-      this.rightPalm = createVector(-1 * (-1280 / 2 + palmX), -960 / 2 + palmY);
-      fill(0, 0, 255);
-      noStroke();
-      circle(this.rightPalm.x, this.rightPalm.y, 10);
-      for (let pRightPalm of this.pRightPalms) {
-        circle(pRightPalm.x, pRightPalm.y, 20);
-      }
-      this.pRightPalms = this.pRightPalms.slice(-10);
+      let { palm, previousPalms } = drawPalm(
+        this.hands[1],
+        this.pRightPalms,
+        this.rightPalm
+      );
+      this.rightPalm = palm;
+      this.pRightPalms = previousPalms;
     }
   }
 
@@ -127,6 +130,6 @@ class HandController {
   gotHands(results) {
     // Save the output to the hands variable
     this.hands = results;
-    console.log(results);
+    //console.log(results);
   }
 }
