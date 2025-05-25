@@ -12,6 +12,8 @@ function updatePalmPosition(hand) {
 function ghostEffect(previousPalms, palm) {
   previousPalms.push(palm);
 
+  // wanted to only have a think line between points, didnt work with WEBGL
+  // end result may feel more like a slice effect
   // https://p5js.org/reference/p5/beginShape/
   fill(0, 255, 255);
   noStroke();
@@ -74,7 +76,7 @@ class HandController {
     if (this.leftPalm) {
       fill(0, 255, 255);
       noStroke();
-      circle(this.leftPalm.x, this.leftPalm.y, 10);
+      circle(this.leftPalm.x, this.leftPalm.y, 2);
     }
 
     /*// right palm
