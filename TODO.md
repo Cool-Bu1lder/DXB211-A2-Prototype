@@ -12,10 +12,10 @@
 - Initial screen to get player into proper pisition.
 - tutorial on how to play, people don't like to read. Show each cube before play.
 - ~~why are we hitting cubes~~
-- Body Outline
+- Body Outline?
 - MUSIC AND SOUND EFFECTS
 - BLACK FADE IN AND OUT TRANSITION
 
 - Name: Cube Slicer
-- Order cube instructions on screen
+- Order cube instructions on screen on menu
 - Cube Size Change when speaking
