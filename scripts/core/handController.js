@@ -37,8 +37,12 @@ class HandController {
     this.hands = [];
     this.leftPalm = {};
     this.rightPalm = {};
+    this.pLeftPalm;
+    this.pRightPalm;
     this.pLeftPalms = [];
     this.pRightPalms = [];
+
+    this.hitPoints = [];
   }
 
   preload() {
@@ -65,6 +69,7 @@ class HandController {
 
     // left palm
     if (this.leftPalm) {
+      this.pLeftPalm = this.leftPalm;
       this.pLeftPalms = ghostEffect(this.pLeftPalms, this.leftPalm);
     }
 
@@ -78,6 +83,40 @@ class HandController {
       noStroke();
       circle(this.leftPalm.x, this.leftPalm.y, 2);
     }
+
+    if (this.pLeftPalm) {
+      let distance = dist(
+        this.leftPalm.x,
+        this.leftPalm.y,
+        this.pLeftPalm.x,
+        this.pLeftPalm.y
+      );
+      let spacing = 40;
+
+      if (distance > spacing) {
+        let steps = max(1, floor(distance / spacing));
+
+        let dx = this.leftPalm.x - this.pLeftPalm.x;
+        let dy = this.leftPalm.y - this.pLeftPalm.y;
+
+        for (let i = 0; i <= steps; i++) {
+          let t = i / steps;
+          let xhit = this.pLeftPalm.x + dx * t;
+          let yhit = this.pLeftPalm.y + dy * t;
+
+          this.hitPoints.push({ x: xhit, y: yhit });
+        }
+        console.log(this.hitPoints);
+      }
+    }
+
+    for (let hitPoint of this.hitPoints) {
+      fill(255, 0, 0);
+      noStroke();
+      circle(hitPoint.x, hitPoint.y, 10);
+    }
+
+    this.hitPoints = [];
 
     /*// right palm
     if (this.rightPalm) {
