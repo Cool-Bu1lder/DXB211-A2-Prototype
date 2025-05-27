@@ -11,6 +11,7 @@
 - multiple slices for big cubes?
 - Display highest score in main menu?
 - Body Outline?
+
 - Effect when cube is cut
 - Initial screen to get player into proper pisition.
 - tutorial on how to play, people don't like to read. Show each cube before play.
