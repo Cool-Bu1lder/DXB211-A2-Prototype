@@ -18,7 +18,7 @@
 
 - MUSIC AND SOUND EFFECTS
 - BLACK FADE IN AND OUT TRANSITION
-- Order cube instructions on screen on menu
-- Cube Size Change when speaking
+- ~~Order cube instructions on screen on menu~~
+- ~~Cube Size Change when speaking~~
 
 - Name: Cube Slicer

@@ -11,6 +11,8 @@ let texts = [];
 let currentInstructionIndex = 0;
 let playRandomInstructions = false;
 
+let speakAlpha = 0;
+
 class MenuController {
   constructor(parameters) {
     this.world = new PhysicsEnvironment();
@@ -43,12 +45,13 @@ class MenuController {
     this.world.display();
 
     if (random() > 0.99) {
+      speakAlpha = 30;
       let instruction;
 
       if (!playRandomInstructions) {
         instruction = instructions[currentInstructionIndex++];
         if (currentInstructionIndex >= instructions.length) {
-          randomMode = true;
+          playRandomInstructions = true;
         }
       } else {
         instruction = random(instructions);
@@ -57,6 +60,11 @@ class MenuController {
       // I would prefer to push a textEffect class, but this works right now.
       texts.push([instruction, 2 * (random() - 0.5), 2 * (random() - 0.5), 0]);
     }
+
+    speakAlpha -= dt * 30;
+    speakAlpha = max(0, speakAlpha);
+
+    this.playCube.size = 50 + speakAlpha;
 
     for (let t of texts) {
       textSize(t[3] + 30);
