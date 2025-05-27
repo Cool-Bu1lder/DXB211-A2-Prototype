@@ -8,12 +8,23 @@ let handController = new HandController();
 let gameStateMachine;
 let font;
 let backgroundImg;
+let menuMusic;
+let playMusic;
+let popSound;
+let sliceSound;
 
 function preload() {
   font = loadFont("data/CascadiaCode.ttf");
   backgroundImg = loadImage("/data/Gradient.png");
 
   handController.preload();
+
+  menuMusic = loadSound("data/Rinse Repeat - DivKid.mp3");
+  playMusic = loadSound(
+    "data/In it to Win it - Dan _Lebo_ Lebowitz, Tone Seeker.mp3"
+  );
+  popSound = loadSound("Metallic Clank.mp3");
+  sliceSound = loadSound("Wood Golf Club Hit Ball.mp3");
 }
 
 function setup() {
