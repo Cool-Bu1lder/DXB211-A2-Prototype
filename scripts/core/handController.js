@@ -67,6 +67,8 @@ class HandController {
 
     //this.debug2D();
 
+    this.hitPoints = [];
+
     // left palm
     if (this.leftPalm) {
       this.pLeftPalm = this.leftPalm;
@@ -106,17 +108,14 @@ class HandController {
 
           this.hitPoints.push({ x: xhit, y: yhit });
         }
-        console.log(this.hitPoints);
       }
     }
 
-    for (let hitPoint of this.hitPoints) {
+    /*for (let hitPoint of this.hitPoints) {
       fill(255, 0, 0);
       noStroke();
       circle(hitPoint.x, hitPoint.y, 10);
-    }
-
-    this.hitPoints = [];
+    }*/
 
     /*// right palm
     if (this.rightPalm) {

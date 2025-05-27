@@ -25,18 +25,17 @@ class Cube extends RigidBody {
       handController.leftPalm.x,
       handController.leftPalm.y
     );
-    let rHandDist = dist(
+    /*let rHandDist = dist(
       this.position.x,
       this.position.y,
       handController.rightPalm.x,
       handController.rightPalm.y
-    );
+    );*/
 
     if (
       !this.wasActived &&
-      (mouseDist < this.range ||
-        lHandDist < this.range ||
-        rHandDist < this.range)
+      //(mouseDist < this.range || lHandDist < this.range)
+      (mouseDist < this.range || this.detectPalmHit())
     ) {
       this.wasActived = true;
       this.activated = true;
@@ -46,6 +45,13 @@ class Cube extends RigidBody {
       let angle = atan2(dy, dx);
 
       this.effect(angle);
+    }
+  }
+
+  detectPalmHit() {
+    for (let p of handController.hitPoints) {
+      let handDist = dist(this.position.x, this.position.y, p.x, p.y);
+      if (handDist < this.range) return true;
     }
   }
 
@@ -97,7 +103,7 @@ class Cube extends RigidBody {
   }
 
   display() {
-    push(); // save previous state
+    push();
 
     stroke(0);
     strokeWeight(2);
