@@ -3,7 +3,7 @@
 - ~~Change hands Icons~~
 - ~~Display score on screen after game~~
 - Display highest score in main menu?
-- New Method for hit Detection, draw line between previous hand position
+- ~~New Method for hit Detection, draw line between previous hand position~~
 - ~~Effects for hands~~
 - Effect when cube is cut
 - ~~Variation of cubes -> different colours == different sizes and speeds~~
