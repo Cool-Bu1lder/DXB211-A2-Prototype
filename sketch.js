@@ -19,12 +19,12 @@ function preload() {
 
   handController.preload();
 
-  menuMusic = loadSound("data/Rinse Repeat - DivKid.mp3");
+  menuMusic = loadSound("data/Rinse_Repeat_-_DivKid.mp3");
   playMusic = loadSound(
-    "data/In it to Win it - Dan _Lebo_ Lebowitz, Tone Seeker.mp3"
+    "data/In_it_to_Win_it_-_Dan__Lebo__Lebowitz,_Tone_Seeker.mp3"
   );
-  popSound = loadSound("Metallic Clank.mp3");
-  sliceSound = loadSound("Wood Golf Club Hit Ball.mp3");
+  popSound = loadSound("data/Metallic_Clank.mp3");
+  sliceSound = loadSound("data/Wood_Golf_Club_Hit_Ball.mp3");
 }
 
 function setup() {
