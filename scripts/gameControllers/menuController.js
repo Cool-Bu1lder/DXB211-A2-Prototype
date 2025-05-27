@@ -8,6 +8,8 @@ let instructions = [
   "Slice the Cube",
 ];
 let texts = [];
+let currentInstructionIndex = 0;
+let playRandomInstructions = false;
 
 class MenuController {
   constructor(parameters) {
@@ -41,13 +43,19 @@ class MenuController {
     this.world.display();
 
     if (random() > 0.99) {
+      let instruction;
+
+      if (!playRandomInstructions) {
+        instruction = instructions[currentInstructionIndex++];
+        if (currentInstructionIndex >= instructions.length) {
+          randomMode = true;
+        }
+      } else {
+        instruction = random(instructions);
+      }
+
       // I would prefer to push a textEffect class, but this works right now.
-      texts.push([
-        random(instructions),
-        2 * (random() - 0.5),
-        2 * (random() - 0.5),
-        0,
-      ]);
+      texts.push([instruction, 2 * (random() - 0.5), 2 * (random() - 0.5), 0]);
     }
 
     for (let t of texts) {
