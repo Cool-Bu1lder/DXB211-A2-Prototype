@@ -11,14 +11,13 @@
 - multiple slices for big cubes?
 - Display highest score in main menu?
 - Body Outline?
-
 - Effect when cube is cut
-- Initial screen to get player into proper pisition.
-- tutorial on how to play, people don't like to read. Show each cube before play.
-
 - MUSIC AND SOUND EFFECTS
 - BLACK FADE IN AND OUT TRANSITION
+
 - ~~Order cube instructions on screen on menu~~
 - ~~Cube Size Change when speaking~~
+- Initial screen to get player into proper pisition.
+- tutorial on how to play, people don't like to read. Show each cube before play.
 
 - Name: Cube Slicer
