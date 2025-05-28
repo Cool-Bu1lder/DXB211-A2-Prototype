@@ -18,12 +18,15 @@ function ghostEffect(previousPalms, palm) {
   fill(0, 255, 255);
   noStroke();
   strokeWeight(2);
-  beginShape(TESS);
+  beginShape();
   for (let pLeftPalm of previousPalms) {
     vertex(pLeftPalm.x, pLeftPalm.y);
+    circle(pLeftPalm.x, pLeftPalm.y, 10);
+    // line function
   }
   endShape();
 
+  // remove from front of array until 10 values left
   previousPalms = previousPalms.slice(-10);
 
   return previousPalms;
