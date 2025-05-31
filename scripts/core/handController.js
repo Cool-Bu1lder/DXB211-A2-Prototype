@@ -21,7 +21,7 @@ function ghostEffect(previousPalms, palm) {
   beginShape();
   for (let pLeftPalm of previousPalms) {
     vertex(pLeftPalm.x, pLeftPalm.y);
-    circle(pLeftPalm.x, pLeftPalm.y, 10);
+    // circle(pLeftPalm.x, pLeftPalm.y, 10);
     // line function
   }
   endShape();

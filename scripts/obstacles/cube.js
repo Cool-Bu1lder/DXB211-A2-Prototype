@@ -25,34 +25,42 @@ class Cube extends RigidBody {
       handController.leftPalm.x,
       handController.leftPalm.y
     );
-    /*let rHandDist = dist(
-      this.position.x,
-      this.position.y,
-      handController.rightPalm.x,
-      handController.rightPalm.y
-    );*/
 
-    if (
-      !this.wasActived &&
-      //(mouseDist < this.range || lHandDist < this.range)
-      (mouseDist < this.range || this.detectPalmHit())
-    ) {
+    let palmHit = this.detectPalmHit();
+
+    if (!this.wasActived && (mouseDist < this.range || palmHit)) {
       this.wasActived = true;
       this.activated = true;
 
-      let dx = mouseX - width / 2 - this.position.x;
-      let dy = mouseY - height / 2 - this.position.y;
-      let angle = atan2(dy, dx);
+      let angle;
+
+      if (palmHit) {
+        let dx = palmHit.x - this.position.x;
+        let dy = palmHit.y - this.position.y;
+        angle = atan2(dy, dx);
+      } else {
+        let dx = mouseX - width / 2 - this.position.x;
+        let dy = mouseY - height / 2 - this.position.y;
+        angle = atan2(dy, dx);
+      }
 
       this.effect(angle);
     }
   }
 
+  calculateAngleFromHit(hitX, hitY) {
+    let dx = hitX - width / 2 - this.position.x;
+    let dy = hitY - height / 2 - this.position.y;
+    let angle = atan2(dy, dx);
+    return angle;
+  }
+
   detectPalmHit() {
     for (let p of handController.hitPoints) {
       let handDist = dist(this.position.x, this.position.y, p.x, p.y);
-      if (handDist < this.range) return true;
+      if (handDist < this.range) return p;
     }
+    return null;
   }
 
   effect(angle) {
