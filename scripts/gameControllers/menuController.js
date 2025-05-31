@@ -1,12 +1,14 @@
 let instructions = [
-  "This Cube\nowes you money",
-  "That cube insulted\nyour haircut",
-  "Cube says you\ncan't do it",
-  "Do it",
-  "The one the cubes\nfear is you",
-  "No cubes allowed",
-  "Slice the Cube",
+  "I don't fear you.\nI am a cube.",
+  "I won't pay back the\nmoney I owe you.",
+  "What are you going to do?\nFlail your arm at me?",
+  "Go on then.\nMiss dramatically.",
+  "I always thought your outfit\nlooked ridiculous anyway.",
+  "Don't slice me.\nYou'll just embarrass yourself.",
+  "I was designed to be unsliceable.\nGood luck with that.",
+  "Go ahead.\nMiss again.",
 ];
+
 let texts = [];
 let currentInstructionIndex = 0;
 let playRandomInstructions = false;
